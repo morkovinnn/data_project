@@ -30,6 +30,14 @@ class BotDB:
                              users_name))
         return self.conn.commit()
 
+    def add_surname(self, user_id, users_surname):
+        """Добавляем фамилию друга"""
+        self.cursor.execute("INSERT INTO `records` (`users_id`, `users_surname` VALUES (?,?)",
+                            (self.get_user_id(user_id),
+                             operation == '+',
+                             users_surname))
+        return self.conn.commit()
+
     def get_records(self, user_id):
         """Получаем все записи друзей"""
         result = self.cursor.execute("SELECT * FROM `records` WHERE `user_id` = ? ORDER BY `date`",
